@@ -4,6 +4,8 @@ import Head from "next/head";
 import Router from "next/router";
 
 import { initGA, logPageView } from "../utils/analytics";
+import "../_fonts.css";
+import "../_global.css";
 
 export default class MyApp extends App {
   componentDidMount() {

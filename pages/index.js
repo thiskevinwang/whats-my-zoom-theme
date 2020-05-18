@@ -1,3 +1,6 @@
+import styled from "styled-components";
+
+const Errthang = styled.div``;
 export default function Home() {
-  return <div>What's my Zoom theme?</div>;
+  return <Errthang>What's my Zoom theme?</Errthang>;
 }
