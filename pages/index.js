@@ -10,6 +10,21 @@ const Errthang = styled.div`
 
   max-width: 800px;
   margin: auto;
+
+  summary {
+    cursor: pointer;
+    outline: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:before {
+    content: "ℹ️";
+    color: #fff;
+  }
+  details[open] summary:before {
+    content: "❌";
+  }
 `;
 
 export default function Home() {
