@@ -1,5 +1,5 @@
 {
-  "name": "with-react-ga",
+  "name": "whats-my-zoom-theme",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "next": "latest",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-ga": "2.5.3"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-ga": "2.7.0"
   },
   "author": "",
   "license": "ISC"
