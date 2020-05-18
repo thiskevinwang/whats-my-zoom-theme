@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Errthang = styled.div`
-  top: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +9,11 @@ const Errthang = styled.div`
 
   max-width: 800px;
   margin: auto;
+  padding: 1rem;
 
+  p {
+    max-width: 540px;
+  }
   summary {
     cursor: pointer;
     outline: none;
@@ -20,7 +23,6 @@ const Errthang = styled.div`
   }
   summary:before {
     content: "ℹ️";
-    color: #fff;
   }
   details[open] summary:before {
     content: "❌";
