@@ -1,12 +1,3 @@
-import Link from 'next/link'
-
 export default function Home() {
-  return (
-    <div>
-      Hello World.{' '}
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </div>
-  )
+  return <div>What's my Zoom theme?</div>;
 }
