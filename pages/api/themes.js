@@ -1,4 +1,4 @@
-const ENDPOINT = "https://odc8qwofsc.execute-api.us-east-1.amazonaws.com/dev";
+const ENDPOINT = process.env.ENDPOINT;
 
 export default async (req, res) => {
   console.log(req.method, req.body);

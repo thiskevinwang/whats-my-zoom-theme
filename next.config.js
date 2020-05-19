@@ -32,6 +32,17 @@ module.exports = (phase) => {
       }
       return "TRACKING_ID:not (isDev,isProd && !isStaging,isProd && isStaging)";
     })(),
+    ENDPOINT: (() => {
+      if (isDev) {
+        console.log(process.env.TRACKING_ID);
+        return "process.env.TRACKING_ID";
+      }
+      if (isProd) {
+        console.log(process.env.TRACKING_ID);
+        return "process.env.TRACKING_ID";
+      }
+      return "ENDPOINT:not (isDev,isProd && !isStaging,isProd && isStaging)";
+    })(),
   };
 
   // next.config.js object
