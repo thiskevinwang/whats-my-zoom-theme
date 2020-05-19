@@ -51,17 +51,12 @@ const Errthang = styled.div`
  * ip: "0.1.2.3"
  * text: "aaaaThis is some theme"
  */
-export default function Home() {
+export default function Home({ themes }) {
   const [theme, setTheme] = useState();
-  const [isFetching, setIsFetching] = useState(false);
-  const getData = async () => {
-    return await fetch("/api/themes?")
-      .then((res) => res.json())
-      .then((themes) => {
-        console.log(themes);
-        const ran = random(0, themes.length - 1);
-        setTheme(themes[ran]);
-      });
+
+  const selectRandomTHeme = () => {
+    const randomIndex = random(0, themes.length - 1);
+    setTheme(themes[randomIndex]);
   };
 
   return (
@@ -71,10 +66,10 @@ export default function Home() {
       {theme?.text ? (
         <>
           <h2>{theme?.text}</h2>
-          <button onClick={getData}>Try another one!</button>
+          <button onClick={selectRandomTHeme}>Try another one!</button>
         </>
       ) : (
-        <button onClick={getData}>Show me the Theme!</button>
+        <button onClick={selectRandomTHeme}>Show me the Theme!</button>
       )}
 
       <details>
@@ -93,4 +88,18 @@ export default function Home() {
       </Link>
     </Errthang>
   );
+}
+
+export async function getServerSideProps(context) {
+  const themes = await fetch(process.env.ENDPOINT)
+    .then((res) => {
+      return res.json();
+    })
+    .then((themes) => {
+      return themes;
+    });
+
+  return {
+    props: { themes }, // will be passed to the page component as props
+  };
 }

@@ -18,7 +18,9 @@ module.exports = (phase) => {
   const isStaging =
     phase === PHASE_PRODUCTION_BUILD && process.env.STAGING === "1";
 
-  console.log(`isDev:${isDev}  isProd:${isProd}   isStaging:${isStaging}`);
+  console.log(`🏖 isDev:${isDev ? "✅" : "❌"}`);
+  console.log(`🚧 isStaging: ${isStaging ? "✅" : "❌"}`);
+  console.log(`🚨isProd:${isProd ? "✅" : "❌"}  `);
 
   const env = {
     TRACKING_ID: (() => {
@@ -34,12 +36,12 @@ module.exports = (phase) => {
     })(),
     ENDPOINT: (() => {
       if (isDev) {
-        console.log(process.env.TRACKING_ID);
-        return "process.env.TRACKING_ID";
+        console.log(process.env.ENDPOINT);
+        return process.env.ENDPOINT;
       }
       if (isProd) {
-        console.log(process.env.TRACKING_ID);
-        return "process.env.TRACKING_ID";
+        console.log(process.env.ENDPOINT);
+        return process.env.ENDPOINT;
       }
       return "ENDPOINT:not (isDev,isProd && !isStaging,isProd && isStaging)";
     })(),

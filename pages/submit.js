@@ -45,13 +45,20 @@ const Errthang = styled.div`
 export default function Submit() {
   const [text, setText] = useState();
   const [success, setSuccess] = useState();
+  const [isFetching, setIsFetching] = useState(false);
   const handleChange = (e) => setText(e.target.value);
   const handleSubmit = async () => {
-    await fetch("/api/themes", {
-      method: "POST",
-      body: JSON.stringify({ text }),
-    });
-    setSuccess(true);
+    setIsFetching(true);
+    try {
+      await fetch(process.env.ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify({ text }),
+      });
+      setSuccess(true);
+      setIsFetching(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -61,14 +68,18 @@ export default function Submit() {
       {success ? (
         <>
           <h2>Thanks!</h2>
-          <Link href="/">Go home</Link>
         </>
       ) : (
         <>
           <input value={text} onChange={handleChange} />
-          <button onClick={handleSubmit}>Submit</button>
+          <button disabled={isFetching} onClick={handleSubmit}>
+            {isFetching ? "..." : "Submit"}
+          </button>
         </>
       )}
+      <Link href="/">
+        <a>Go home</a>
+      </Link>
     </Errthang>
   );
 }
