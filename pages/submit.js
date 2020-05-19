@@ -104,6 +104,14 @@ export default function Submit() {
       <Link href="/">
         <a>Go home</a>
       </Link>
+      <br />
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={"https://twitter.com/thekevinwang"}
+      >
+        Say hi 👋
+      </a>
     </Errthang>
   );
 }
