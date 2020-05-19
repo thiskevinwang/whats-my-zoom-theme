@@ -78,9 +78,12 @@ export default function Home({ themes }) {
         <summary>What is this?</summary>
         <p>
           This is a fun little tool to help you pick a theme for your next zoom
-          meeting! This theme could be anything from a background picture of
-          your favorite kind of animal, or a fun yoga position for you and your
-          team!
+          meeting!
+        </p>
+        <p>
+          The theme could be anything from...&nbsp;
+          <i>"share a background picture of your favorite kind of animal"</i>
+          &nbsp;...to...&nbsp;doing 30 seconds of meditative breathing!
         </p>
       </details>
 

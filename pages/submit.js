@@ -48,10 +48,11 @@ const Errthang = styled.div`
 `;
 
 export default function Submit() {
-  const [text, setText] = useState();
+  const [text, setText] = useState("");
   const [validationError, setValidationError] = useState();
   const [success, setSuccess] = useState();
   const [isFetching, setIsFetching] = useState(false);
+
   const handleChange = (e) => {
     const value = e.target.value;
     const regex = RegExp(/^([a-zA-Z0-9_\-'"., ])*$/g);
@@ -64,6 +65,7 @@ export default function Submit() {
     }
     setText(value.trimStart());
   };
+
   const handleSubmit = async () => {
     setIsFetching(true);
     try {
@@ -82,6 +84,7 @@ export default function Submit() {
     <Errthang>
       <h1>Submit your own theme!</h1>
 
+      <p>🙏 Please be nice!</p>
       {success ? (
         <>
           <h2>Thanks!</h2>
@@ -91,7 +94,7 @@ export default function Submit() {
           <textarea id="input" value={text} onChange={handleChange} />
           <label htmlFor="input">{validationError}</label>
           <button
-            disabled={!!validationError || isFetching}
+            disabled={!!validationError || isFetching || text.length < 3}
             onClick={handleSubmit}
           >
             {isFetching ? "..." : "Submit"}
