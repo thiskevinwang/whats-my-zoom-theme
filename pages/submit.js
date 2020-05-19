@@ -14,6 +14,8 @@ const Errthang = styled.div`
   padding: 1rem;
 
   button {
+    border: 1px solid lightgray;
+    border-radius: 3px;
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-family: var(--font-sans);
