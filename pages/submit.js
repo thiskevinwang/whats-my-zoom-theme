@@ -22,7 +22,10 @@ const Errthang = styled.div`
     font-size: 1rem;
   }
 
-  input {
+  input,
+  textarea {
+    border: 1px solid lightgray;
+    border-radius: 3px;
     font-family: var(--font-sans);
     font-size: 1rem;
   }
@@ -46,9 +49,21 @@ const Errthang = styled.div`
 
 export default function Submit() {
   const [text, setText] = useState();
+  const [validationError, setValidationError] = useState();
   const [success, setSuccess] = useState();
   const [isFetching, setIsFetching] = useState(false);
-  const handleChange = (e) => setText(e.target.value);
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const regex = RegExp(/^([a-zA-Z0-9_\-'"., ])*$/g);
+    if (value.includes("\n")) {
+      setValidationError("🙅‍♀️ no line breaks please!");
+    } else if (regex.test(value)) {
+      setValidationError("");
+    } else {
+      setValidationError("🔤🔢 no funky characters please!");
+    }
+    setText(value.trimStart());
+  };
   const handleSubmit = async () => {
     setIsFetching(true);
     try {
@@ -73,8 +88,12 @@ export default function Submit() {
         </>
       ) : (
         <>
-          <input value={text} onChange={handleChange} />
-          <button disabled={isFetching} onClick={handleSubmit}>
+          <textarea id="input" value={text} onChange={handleChange} />
+          <label htmlFor="input">{validationError}</label>
+          <button
+            disabled={!!validationError || isFetching}
+            onClick={handleSubmit}
+          >
             {isFetching ? "..." : "Submit"}
           </button>
         </>
